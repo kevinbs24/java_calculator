@@ -1,4 +1,4 @@
-package calculator;
+package calculator.swing;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -15,8 +15,8 @@ public class UserInterface extends JFrame {
 	Font displayFont = new Font("Arial", Font.BOLD, 18);
 	ButtonHandler bh = new ButtonHandler(this);
 	Container c = getContentPane();
-	JTextArea display = new JTextArea();
-	String displayText = "";
+	public JTextArea display = new JTextArea();
+	public String displayText = "";
 	JPanel buttonPanel = new JPanel(new GridLayout(4, 4));
 	JButton nineButton = new JButton("9");
 	JButton eightButton = new JButton("8");

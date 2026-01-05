@@ -1,12 +1,16 @@
-package calculator;
+package calculator.swing;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import calculator.OperatorHandler;
+import calculator.engine.CalculatorEngine;
 
 public class ButtonHandler implements ActionListener {
 
 	UserInterface ui;
 	OperatorHandler oh;
+	CalculatorEngine engine = new CalculatorEngine();
 
 	public ButtonHandler(UserInterface ui) {
 
@@ -54,7 +58,7 @@ public class ButtonHandler implements ActionListener {
 			oh.operatorPressed("-");
 		}
 		if (e.getSource() == ui.timesButton) {
-			oh.operatorPressed("x");
+			oh.operatorPressed("*");
 		}
 		if (e.getSource() == ui.divideButton) {
 			oh.operatorPressed("/");
