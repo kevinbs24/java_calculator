@@ -17,7 +17,9 @@ public class UserInterface extends JFrame {
 	Container c = getContentPane();
 	public JTextArea display = new JTextArea();
 	public String displayText = "";
-	JPanel buttonPanel = new JPanel(new GridLayout(4, 4));
+	JPanel buttonPanel = new JPanel(new GridLayout(5, 4, 5, 5));
+	JButton leftParenButton = new JButton("(");
+	JButton rightParenButton = new JButton(")");
 	JButton nineButton = new JButton("9");
 	JButton eightButton = new JButton("8");
 	JButton sevenButton = new JButton("7");
@@ -44,14 +46,22 @@ public class UserInterface extends JFrame {
 		display.setFont(displayFont);
 		display.setEditable(false);
 
+		buttonPanel.add(leftParenButton);
+		leftParenButton.addActionListener(bh);
+		buttonPanel.add(rightParenButton);
+		rightParenButton.addActionListener(bh);
+		buttonPanel.add(clearButton);
+		clearButton.addActionListener(bh);
+		buttonPanel.add(divideButton);
+		divideButton.addActionListener(bh);
 		buttonPanel.add(nineButton);
 		nineButton.addActionListener(bh);
 		buttonPanel.add(eightButton);
 		eightButton.addActionListener(bh);
 		buttonPanel.add(sevenButton);
 		sevenButton.addActionListener(bh);
-		buttonPanel.add(plusButton);
-		plusButton.addActionListener(bh);
+		buttonPanel.add(timesButton);
+		timesButton.addActionListener(bh);
 		buttonPanel.add(sixButton);
 		sixButton.addActionListener(bh);
 		buttonPanel.add(fiveButton);
@@ -66,16 +76,12 @@ public class UserInterface extends JFrame {
 		twoButton.addActionListener(bh);
 		buttonPanel.add(oneButton);
 		oneButton.addActionListener(bh);
-		buttonPanel.add(timesButton);
-		timesButton.addActionListener(bh);
-		buttonPanel.add(equalsButton);
-		equalsButton.addActionListener(bh);
+		buttonPanel.add(plusButton);
+		plusButton.addActionListener(bh);
 		buttonPanel.add(zeroButton);
 		zeroButton.addActionListener(bh);
-		buttonPanel.add(clearButton);
-		clearButton.addActionListener(bh);
-		buttonPanel.add(divideButton);
-		divideButton.addActionListener(bh);
+		buttonPanel.add(equalsButton);
+		equalsButton.addActionListener(bh);
 
 		// This line is not necessary as BorderLayout is the default for JFrame anyway
 		// c.setLayout(new BorderLayout());

@@ -5,7 +5,8 @@ public enum Operator {
 	ADD('+', 1),
 	SUBTRACT('-', 1),
 	MULTIPLY('*', 2),
-	DIVIDE('/', 2);
+	DIVIDE('/', 2), 
+	LEFT_PAREN('(', -1);
 	
 	public final char symbol;
 	public final double precedence;

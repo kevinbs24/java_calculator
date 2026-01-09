@@ -15,18 +15,6 @@ public class CalculatorEngine {
 		values.push(op.apply(a, b));
 	}
 
-	public void inputNumber(double num) {
-
-	}
-
-	public void inputOperator(String op) {
-
-	}
-
-	public void clear() {
-
-	}
-
 	public double evaluate(String expression) {
 		Stack<Double> values = new Stack<>();
 		Stack<Operator> operators = new Stack<>();
@@ -35,6 +23,23 @@ public class CalculatorEngine {
 
 		while (i < expression.length()) {
 			char ch = expression.charAt(i);
+			
+			if (ch == '(') {
+			    operators.push(Operator.LEFT_PAREN);
+			    i++;
+			    continue;
+			}
+			
+			if (ch == ')') {
+			    while (!operators.isEmpty() &&
+			           operators.peek() != Operator.LEFT_PAREN) {
+			        applyTop(values, operators);
+			    }
+
+			    operators.pop(); // remove '('
+			    i++;
+			    continue;
+			}
 
 			// Skip spaces
 			if (ch == ' ') {
@@ -60,9 +65,11 @@ public class CalculatorEngine {
 			if (isOperator(ch)) {
 				Operator current = Operator.fromChar(ch);
 
-				while (!operators.isEmpty() && operators.peek().precedence >= current.precedence) {
-					applyTop(values, operators);
-				}
+				while (!operators.isEmpty()
+					    && operators.peek() != Operator.LEFT_PAREN
+					    && operators.peek().precedence >= current.precedence) {
+					    applyTop(values, operators);
+					}
 
 				operators.push(current);
 			}

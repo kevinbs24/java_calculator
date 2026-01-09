@@ -12,15 +12,18 @@ public class OperatorHandler {
 		this.ui = ui;
 		this.engine = new CalculatorEngine();
 	}
+	
+	public void append(String text) {
+	    ui.displayText += text;
+	    ui.display.setText(ui.displayText);
+	}
 
 	public void numberPressed(String digit) {
-		ui.displayText += digit;
-		ui.display.setText(ui.displayText);
+	    append(digit);
 	}
 
 	public void operatorPressed(String op) {
-		ui.displayText += " " + op + " ";
-		ui.display.setText(ui.displayText);
+	    append(" " + op + " ");
 	}
 
 	public void equalsPressed() {

@@ -21,6 +21,12 @@ public class ButtonHandler implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
+		if (e.getSource() == ui.leftParenButton) {
+			oh.append("(");
+		}
+		if (e.getSource() == ui.rightParenButton) {
+			oh.append(")");
+		}
 		if (e.getSource() == ui.nineButton) {
 			oh.numberPressed("9");
 		}
