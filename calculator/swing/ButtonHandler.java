@@ -3,78 +3,33 @@ package calculator.swing;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import calculator.OperatorHandler;
-import calculator.engine.CalculatorEngine;
+import calculator.controller.CalculatorController;
 
 public class ButtonHandler implements ActionListener {
 
-	UserInterface ui;
-	OperatorHandler oh;
-	CalculatorEngine engine = new CalculatorEngine();
+    private final UserInterface ui;
+    private final CalculatorController controller;
 
-	public ButtonHandler(UserInterface ui) {
+    public ButtonHandler(UserInterface ui) {
+        this.ui = ui;
+        this.controller = new CalculatorController(ui);
+    }
 
-		this.ui = ui;
-		this.oh = new OperatorHandler(ui);
-	}
+    @Override
+    public void actionPerformed(ActionEvent e) {
+    	String cmd = e.getActionCommand();
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
+    	switch (cmd) {
+    	    case "(" -> controller.appendToDisplay("(");
+    	    case ")" -> controller.appendToDisplay(")");
+    	    case "+" -> controller.onOperatorPressed("+");
+    	    case "-" -> controller.onOperatorPressed("-");
+    	    case "*" -> controller.onOperatorPressed("*");
+    	    case "/" -> controller.onOperatorPressed("/");
+    	    case "=" -> controller.onEqualsPressed();
+    	    case "C" -> controller.onClearPressed();
+    	    default -> controller.onDigitPressed(cmd);
+    	}
 
-		if (e.getSource() == ui.leftParenButton) {
-			oh.append("(");
-		}
-		if (e.getSource() == ui.rightParenButton) {
-			oh.append(")");
-		}
-		if (e.getSource() == ui.nineButton) {
-			oh.numberPressed("9");
-		}
-		if (e.getSource() == ui.eightButton) {
-			oh.numberPressed("8");
-		}
-		if (e.getSource() == ui.sevenButton) {
-			oh.numberPressed("7");
-		}
-		if (e.getSource() == ui.sixButton) {
-			oh.numberPressed("6");
-		}
-		if (e.getSource() == ui.fiveButton) {
-			oh.numberPressed("5");
-		}
-		if (e.getSource() == ui.fourButton) {
-			oh.numberPressed("4");
-		}
-		if (e.getSource() == ui.threeButton) {
-			oh.numberPressed("3");
-		}
-		if (e.getSource() == ui.twoButton) {
-			oh.numberPressed("2");
-		}
-		if (e.getSource() == ui.oneButton) {
-			oh.numberPressed("1");
-		}
-		if (e.getSource() == ui.zeroButton) {
-			oh.numberPressed("0");
-		}
-		if (e.getSource() == ui.plusButton) {
-			oh.operatorPressed("+");
-		}
-		if (e.getSource() == ui.minusButton) {
-			oh.operatorPressed("-");
-		}
-		if (e.getSource() == ui.timesButton) {
-			oh.operatorPressed("*");
-		}
-		if (e.getSource() == ui.divideButton) {
-			oh.operatorPressed("/");
-		}
-		if (e.getSource() == ui.equalsButton) {
-			oh.equalsPressed();
-		}
-		if (e.getSource() == ui.clearButton) {
-			oh.clearPressed();
-		}
-	}
-
+    }
 }
